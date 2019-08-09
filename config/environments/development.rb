@@ -26,6 +26,8 @@ Rails.application.configure do
     config.action_controller.perform_caching = false
 
     config.cache_store = :null_store
+    Paperclip.options[:command_path] = 'C:\Program Files (x86)\GnuWin32\bin'
+
   end
 
   # Store uploaded files on the local file system (see config/storage.yml for options).
@@ -60,6 +62,5 @@ Rails.application.configure do
   # routes, locales, etc. This feature depends on the listen gem.
   # config.file_watcher = ActiveSupport::EventedFileUpdateChecker
   config.action_mailer.default_url_options = { host:'localhost', port:3000 }
-  Paperclip.options[:command_path] = "/usr/local/bin/"
 
 end
