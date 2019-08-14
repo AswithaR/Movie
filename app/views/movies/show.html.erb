@@ -1,36 +1,55 @@
 <div class="panel panel-default">
  <div class="panel-body">
   <div class="row">
-    <div class="col-md-4">
-     <div class="table-responsive">
-     <div class="table">
-       <tbody>
-        <tr>
-          <td><strong>Title:</strong></td>
-          <td><%= @movie.title %></td>
-        </tr>
-        <tr>
-          <td><strong>Description:</strong></td>
-          <td><%= @movie.description %></td>
-        </tr>
-        <tr>
-          <td><strong>Movie length:</strong></td>
-          <td><%= @movie.movie_length %></td>
-        </tr>
-        <tr>
-          <td><strong>Director:</strong></td>
-          <td><%= @movie.director %></td>
-        </tr>
-        <tr>
-          <td><strong>Rating:</strong></td>
-          <td><%= @movie.rating %></td>
-        </tr>
-      </tbody>
+    <div class="row-md-1">
+      <em><%= "#{@reviews.length} reviews" %></em>
+      <div class="table-responsive">
+        <div class="table">
+          <center>
+            <table border="1">
+              <tbody>
+                <tr>
+                  <td><strong><u>TITLE:</u></strong></td>
+                  <td><%= @movie.title %></td></tr>
+                </tr>
+                <tr>
+                  <td><strong><u>DESCRIPTION:</u></strong></td>
+                  <td><%= @movie.description %></td><br/>
+                </tr>
+                <tr>
+                  <td><strong><u>MOVIE LENGTH:</u></strong></td>
+                  <td><%= @movie.movie_length %></td><br/>
+                </tr>
+                <tr>
+                  <td><strong><u>DIRECTOR:</u></strong></td>
+                  <td><%= @movie.director %></td><br/>
+                </tr>
+                <tr>
+                  <td><strong><u>RATING:</u></strong></td>
+                  <td><%= @movie.rating %></td><br/>
+                </tr>
+              </tbody>
+            </table>
+            <br/>
+          <%= link_to "WRITE A REVIEW", new_movie_review_path(@movie) %>
+        </center>
+        </div>
+      </div>
+      <div class="col-md-300 col-md-offset-1">
+        <% if @reviews.blank? %>
+          <h3>No reviews just yet, would you like to add the first!</h3>
+            <%= link_to "Write Review", new_movie_review_path(@movie), class: "btn btn-danger" %>
+        <% else %>
+          <% @reviews.each do |review| %>
+            <div class="reviews">
+              <p><%= review.comment %></p>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
     </div>
-    </div>
-   </div>
-  </div>
   </div>
 </div>
+
 <%= link_to 'Edit', edit_movie_path(@movie) %> |
 <%= link_to 'Back', movies_path %>
